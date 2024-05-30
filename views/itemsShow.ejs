@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= item.name %></title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 20px;
+          background-color: #f4f4f4;
+      }
+      h1 {
+          color: #333;
+      }
+      img {
+          max-width: 100%;
+          height: auto;
+          margin-top: 10px;
+      }
+      a {
+          display: inline-block;
+          margin-top: 20px;
+          text-decoration: none;
+          color: #007bff;
+      }
+      a:hover {
+          text-decoration: underline;
+      }
+      button {
+          padding: 10px 15px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+      button:hover {
+          background-color: #0056b3;
+      }
+      form {
+          margin-top: 20px;
+      }
+  </style>
+</head>
+<body>
+  <h1><%= item.name %></h1>
+  <p><%= item.description %></p>
+  <p>Starting Price: $<%= item.starting_price %></p>
+  <p>Current Price: $<%= item.current_price %></p>
+  <% if (item.image_url) { %>
+    <img src="<%= item.image_url %>" alt="<%= item.name %>">
+  <% } %>
+  <p>End Time: <%= new Date(item.end_time).toLocaleString() %></p>
+
+  <!-- Update and Delete Buttons -->
+  <a href="/items/<%= item.id %>/update">Update Item</a>
+  <form action="/items/<%= item.id %>/?_method=DELETE" method="POST">
+    <button>Delete</button>
+  </form>
+
+  
+  <!-- Bidding Section -->
+  <h2>Bidding</h2>
+  <a href="/items/<%= item.id %>/bids">View All Bids</a>
+  <form action="/items/<%= item.id %>/bids" method="POST">
+    <label for="bid_amount">Place a Bid:</label>
+    <input type="number" id="bid_amount" name="bid_amount" step="0.01" required>
+    <button type="submit">Place Bid</button>
+  </form>
+</body>
+</html>

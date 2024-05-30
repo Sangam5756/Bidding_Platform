@@ -1,0 +1,35 @@
+<!-- views/item.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= item.name %></title>
+</head>
+<body>
+  <h1><%= item.name %></h1>
+  <p><%= item.description %></p>
+  <p>Starting Price: $<%= item.starting_price %></p>
+  <p>Current Price: $<%= item.current_price %></p>
+  <% if (item.image_url) { %>
+    <img src="<%= item.image_url %>" alt="<%= item.name %>">
+  <% } %>
+  <p>End Time: <%= item.end_time %></p>
+
+  <h2>Update Item</h2>
+  <form action="/items/<%= item.id %>/update/?_method=UPDATE" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<%= item.name %>" required><br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required><%= item.description %></textarea><br>
+    <label for="starting_price">Starting Price:</label>
+    <input type="number" id="starting_price" name="starting_price" value="<%= item.starting_price %>" required><br>
+    <label for="current_price">Current Price:</label>
+    <input type="number" id="current_price" name="current_price" value="<%= item.current_price %>" required><br>
+    <label for="image_url">Image URL:</label>
+    <input type="text" id="image_url" name="image_url" value="<%= item.image_url %>"><br>
+    <label for="end_time">End Time:</label>
+    <input type="datetime-local" id="end_time" name="end_time" value="<%= item.end_time.toISOString().slice(0, 16) %>" required><br>
+    <button type="submit">Update Item</button>
+  </form>
+</body>
+</html>
