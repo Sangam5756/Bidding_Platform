@@ -48,6 +48,7 @@ nodemon app.js
     <li><strong>Delete Item:</strong> Only authorized users can delete an item by sending a DELETE request to <a href="http://localhost:5000/items/itemid">localhost:5000/items/itemid</a>.</li>
   </ul>
 </ul>
+
 # Bid Routes
 
 <ul>
